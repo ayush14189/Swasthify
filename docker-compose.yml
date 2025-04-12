@@ -1,4 +1,4 @@
-version: '3.8'
+version: '3.9'
 
 services:
   backend:
@@ -11,6 +11,7 @@ services:
       - MONGO_URL=mongodb://mongo:27017/swasthify
     depends_on:
       - mongo
+      - flask
 
   frontend:
     build: ./frontend
@@ -26,5 +27,7 @@ services:
     volumes:
       - mongo-data:/data/db
 
-volumes:
-  mongo-data:
+  flask:
+    build: ./flask
+    ports:
+      - "8080:8080"
